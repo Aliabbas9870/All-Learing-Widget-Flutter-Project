@@ -10,16 +10,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       title: 'Flutter Learing Widget',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 209, 207, 211)),
         useMaterial3: true,
+        primaryColor:Color.fromARGB(255, 207, 210, 212),
+        primarySwatch:Colors.grey
       ),
-      home: ListVBS(),
+      home:  validationform(),
     );
   }
 }

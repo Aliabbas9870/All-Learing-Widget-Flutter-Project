@@ -4,6 +4,157 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
 
+class validationform extends StatelessWidget {
+  //const validationform({super.key});
+
+  @override
+  final GlobalKey<FormState> _formeKey = GlobalKey<FormState>();
+//////////////////
+  ///
+  ///
+  void _submitForm() {
+    if (_formeKey.currentState!.validate()) {
+      ScaffoldMessenger.of(_formeKey.currentContext!).showSnackBar(
+          const SnackBar(content: Text("Form Successful Submit")));
+    }
+  }
+
+///////////
+  ///
+  ///
+  String? _validateEmail(value) {
+    if (value!.isEmpty) {
+      return "Please Enter Email";
+    }
+    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}');
+    if (!emailRegExp.hasMatch(value)) {
+      return "please Enter Valid Email";
+    }
+    return null;
+  }
+
+///////////////
+  ///
+  ///
+  ///
+  String? _validPhone(value) {
+    if (value!.isEmpty) {
+      return "Please Enter a Phone Number ";
+    }
+    if (value.length != 11) {
+      return "Please Enter 11 Digits";
+    }
+    return null;
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromARGB(95, 224, 52, 52), ///////////////0xff
+            Color.fromARGB(255, 129, 182, 219),
+            const Color.fromARGB(179, 230, 202, 202)
+          ],
+        )),
+        width: 600,
+        height: 500,
+        child: Center(
+          child: Form(
+              key: _formeKey,
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text(
+                    "Welcome!",
+                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                  )),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    validator: _validateEmail,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    // validator: (value) {
+                    //   if (value!.isEmpty) {
+                    //     return "Please Enter Email";
+                    //   }
+                    //   return null;
+                    // },
+                    decoration: InputDecoration(
+                        labelText: "Email",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11))),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                  child: TextFormField(
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Please Enter Password";
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                        labelText: "Password",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11))),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                  child: TextFormField(
+                    validator: _validPhone,
+                    // validator: (value) {
+                    //   if (value!.isEmpty) {
+                    //     return "Please Enter Phone Number";
+                    //   }
+                    //   return null;
+                    // },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                        labelText: "Phone",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11))),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal:9.0),
+                      child: ElevatedButton(
+                          onPressed: _submitForm, child: Text("Ali Abbas")),
+                    )),
+                TextButton(onPressed: _submitForm, child: Text("Ali"))
+              ])),
+        ),
+      ),
+    ));
+  }
+}
+
 class ListVBS extends StatelessWidget {
   var arrname = [
     'ali ',
@@ -19,7 +170,7 @@ class ListVBS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("DeshBord"), actions: [
+      appBar: AppBar(title: Text("DeshBor    hgghhgjh  d "), actions: [
         Padding(padding: EdgeInsets.only(top: 15, right: 19)),
         Icon(
           Icons.person,
@@ -43,10 +194,18 @@ class ListVBS extends StatelessWidget {
                 PopupMenuItem(value: 2, child: InkWell(child: Text("Account"))),
                 PopupMenuItem(value: 3, child: Text("Linked Device ")),
                 PopupMenuItem(value: 4, child: Text("Chate")),
-                PopupMenuItem(value: 5, child: InkWell(child: Text("App Language"))),
+                PopupMenuItem(
+                    value: 5, child: InkWell(child: Text("App Language"))),
                 PopupMenuItem(value: 6, child: Text("Backup")),
-                PopupMenuItem(value: 7, child: InkWell(child: Text("Sitting "))),
-                PopupMenuItem(value: 8, child: InkWell( onTap: (){print("Invit Friends Tap");},child: Text("Invite a friend"))),
+                PopupMenuItem(
+                    value: 7, child: InkWell(child: Text("Sitting "))),
+                PopupMenuItem(
+                    value: 8,
+                    child: InkWell(
+                        onTap: () {
+                          print("Invit Friends Tap");
+                        },
+                        child: Text("Invite a friend"))),
                 PopupMenuItem(
                   child: Text("Helps Action"),
                   value: 9,
