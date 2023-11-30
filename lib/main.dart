@@ -1,4 +1,5 @@
 import 'package:alllearingwidget/learning_components/HelpForLearnCode.dart';
+import 'package:alllearingwidget/learning_components/Swipe.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primaryColor:Color.fromARGB(255, 207, 210, 212),
         primarySwatch:Colors.grey
       ),
-      home:  validationform(),
+      home:  Swape(),
     );
   }
 }
